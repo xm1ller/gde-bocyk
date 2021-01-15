@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>где боцик</title>
+	<style>
+		:root {
+		  --mx: 0px;
+		  --my: 0px;
+		  --mz: 0px;
+		}
+		
+		body {
+			background: #121212;
+			box-sizing: border-box;
+		}
+		
+		.box {
+			display: grid;
+			justify-items: center;
+			grid-template-rows: 1fr 0fr;
+			grid-gap: 10px;
+			
+			margin-top: 20px;
+		}
+		
+		@media (max-width: 420px) {
+			.box {
+				margin: 40px;
+			}
+		}
+		
+		.box__container {
+			position: relative;
+			width: 100%;
+			max-width: 500px;
+			max-height: 500px;
+			height: 100vw;
+			border: solid 4px white;
+			transform: translate3d(var(--mx), var(--my), 0);
+		}
+		
+		@media (max-width: 420px) {
+			.box {
+				max-width: initial;
+				max-height: initial;
+			}
+		}
+		
+		.box__inner {
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background-image: url(bocyk.jpg);
+			background-size: 110%;
+			background-position: var(--mx) var(--my);
+			box-shadow: inset 0 0 10px black;
+		}
+		
+		.box__labels {
+			color: white;
+			height: 100%;
+			display: flex;
+			font-size: 150%;
+			justify-content: center;
+		}
+		
+		@media (max-width: 420px) {
+			.box__labels {
+				font-size: 7vw;
+			}
+		}
+		
+		h1 {
+			margin: 0;
+		}
+		
+		.box__labels {
+			transform: translate3d(var(--mx), var(--my), var(--mz));
+		}	
+	</style>
+	<body>
+		<div class="box">
+			<div class="box__container">
+				<div class="box__inner"></div>
+			</div>
+			<div class="box__labels">
+				<h1>где боцик</h1>
+			</div>
+		</div>
+		<script>
+			let box = document.querySelector(".box");
+			let root = document.documentElement;
+			
+			const parallax = () => 
+			{
+				let t = 0.1;
+				
+				boxPos = box.getBoundingClientRect()
+				let mx = event.pageX / 10
+				let my = event.pageY / 10
+
+				
+				root.style.setProperty("--mx", mx + "px")
+				root.style.setProperty("--my", my + "px")
+			}
+			
+			root.addEventListener("mousemove", (event) => 
+			{		
+				parallax(event)	
+			})
+		</script>
+	</body>
+</html>
